@@ -55,7 +55,7 @@
 <section class="contact-section">
   <div class="wrap">
     <div class="contact-grid">
-      <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks — we\\'ll be in touch within one business day.');">
+      <form class="contact-form" id="proposalForm">
         <h2>Send us your scope</h2>
         <p class="lead">Or upload your current vendor's report and we'll match it line-for-line with our pricing.</p>
 
@@ -121,5 +121,19 @@
 </div>
 <div class="wrap foot-bottom"><div>© 2026 Pool All-Stars Commercial. All rights reserved.</div><div>Licensed · Insured · CPO Certified · BBB A+</div></div></footer>
 
-<script>(function(){var t=document.querySelector('.mobile-toggle'),m=document.getElementById('mobile-menu'),o=document.querySelector('.mobile-overlay'),c=document.querySelector('.mobile-close');if(!t||!m||!o)return;function open(){m.classList.add('open');o.classList.add('open');document.body.classList.add('menu-open');t.setAttribute('aria-expanded','true')}function close(){m.classList.remove('open');o.classList.remove('open');document.body.classList.remove('menu-open');t.setAttribute('aria-expanded','false')}t.addEventListener('click',open);if(c)c.addEventListener('click',close);o.addEventListener('click',close);m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close)});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('open'))close()})})();</script>
+<script>
+(function(){var t=document.querySelector('.mobile-toggle'),m=document.getElementById('mobile-menu'),o=document.querySelector('.mobile-overlay'),c=document.querySelector('.mobile-close');if(!t||!m||!o)return;function open(){m.classList.add('open');o.classList.add('open');document.body.classList.add('menu-open');t.setAttribute('aria-expanded','true')}function close(){m.classList.remove('open');o.classList.remove('open');document.body.classList.remove('menu-open');t.setAttribute('aria-expanded','false')}t.addEventListener('click',open);if(c)c.addEventListener('click',close);o.addEventListener('click',close);m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close)});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('open'))close()})})();
+(function(){
+  var f=document.getElementById('proposalForm');
+  if(!f)return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=f.querySelector('button[type="submit"]');
+    if(btn){btn.disabled=true;btn.textContent='Sending...';}
+    setTimeout(function(){
+      f.innerHTML='<div style="text-align:center;padding:2rem 0"><div style="font-family:Inter Tight,sans-serif;font-weight:800;font-size:1.5rem;color:var(--ink);margin-bottom:0.85rem;letter-spacing:-0.025em">Thanks — your proposal request is in.</div><p style="color:var(--gray);font-size:0.98rem;line-height:1.5;margin-bottom:1rem">We’ll review your scope and respond within one business day. For urgent requests, call <a href="tel:18003947665" style="color:var(--red);font-weight:600;text-decoration:underline">(800) 394-POOL</a>.</p></div>';
+    },600);
+  });
+})();
+</script>
 </body></html>
